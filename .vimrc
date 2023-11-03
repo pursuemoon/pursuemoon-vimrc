@@ -32,6 +32,7 @@ colorscheme vice
 let mapleader = ";"
 
 set backspace=indent,eol,start
+set vb t_vb=""
 set mouse=c
 set number
 set nowrap
