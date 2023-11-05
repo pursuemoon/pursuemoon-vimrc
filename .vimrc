@@ -31,9 +31,10 @@ colorscheme vice
 
 let mapleader = ";"
 
+if has('win64') || has('win32') | set mouse=a | else | set mouse=c | endif
+
 set backspace=indent,eol,start
 set vb t_vb=""
-set mouse=c
 set number
 set nowrap
 set smartindent
