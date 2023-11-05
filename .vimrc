@@ -31,7 +31,17 @@ colorscheme vice
 
 let mapleader = ";"
 
-if has('win64') || has('win32') | set mouse=a | else | set mouse=c | endif
+let g:platform_is_windows = has('win64') || has('win32')
+
+if g:platform_is_windows
+    set mouse=a
+    set helplang=ch
+    set langmenu=zh_CN.UTF-8
+else
+    set mouse=c
+    set helplang=en
+    set langmenu=en_US.UTF-8
+endif
 
 set backspace=indent,eol,start
 set vb t_vb=""
@@ -44,7 +54,6 @@ set softtabstop=4
 set tabstop=4
 set t_Co=256
 set encoding=UTF-8
-set langmenu=zh_CN.UTF-8
 set hlsearch
 set relativenumber
 set nobackup
@@ -111,7 +120,7 @@ vnoremap <leader>J :'<,'>!python3 -m json.tool<cr>
 
 function! CompileAndRun()
     execute "w"
-    let time_cmd = has('win64') || has('win32') ? "timecmd" : "time"
+    let time_cmd = g:platform_is_windows ? "timecmd" : "time"
     if &filetype == 'c'
         execute "!clang % -o %<"
         execute "!time ./%<"
