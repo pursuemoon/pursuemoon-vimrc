@@ -151,8 +151,9 @@ let g:airline_theme = 'deus'
 nnoremap <f3> :NERDTreeToggle<cr>
 nnoremap <f4> :NERDTreeFind<cr>
 let g:NERDTreeWinPos = 'left'
-let g:NERDTreeWinSize = 40
+let g:NERDTreeWinSize = 46
 let g:NERDTreeShowLineNumbers = 0
+let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeHidden = 1
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
