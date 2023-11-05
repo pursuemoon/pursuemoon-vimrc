@@ -109,18 +109,19 @@ inoremap <leader>> &gt;
 vnoremap <leader>J :'<,'>!python3 -m json.tool<cr>
 
 function! CompileAndRun()
-	execute "w"
-	if &filetype == 'c'
-		execute "!g++ % -o %<"
-		execute "!time ./%<"
-	elseif &filetype == 'cpp'
-		execute "!g++ % -o %<"
-		execute "!time ./%<"
+    execute "w"
+    let time_cmd = has('win64') || has('win32') ? "timecmd" : "time"
+    if &filetype == 'c'
+        execute "!clang % -o %<"
+        execute "!time ./%<"
+    elseif &filetype == 'cpp'
+        execute "!g++ % -g -o %<"
+        execute "!" time_cmd " %<"
     elseif &filetype == 'sh'
-		execute "!time zsh %"
+        execute "!time zsh %"
     elseif &filetype == 'python'
-	    execute "!time python3 %"
-	endif
+        execute "!time python3 %"
+    endif
 endfunction
 
 nnoremap <f5> :call CompileAndRun()<cr>
