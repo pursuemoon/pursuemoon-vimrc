@@ -8,12 +8,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'ryanoasis/vim-devicons'
 
-Plug 'scrooloose/nerdtree' 
+Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install()  }, 'for': ['markdown', 'vim-plug'] }
 
 Plug 'godlygeek/tabular'
 Plug 'frazrepo/vim-rainbow'
@@ -179,14 +179,31 @@ let g:NERDToggleCheckAllLines = 1
 
 
 " markdown-preview
-let g:mkdp_auto_start = 1
+let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_auto_open = 1
-let g:mkdp_browser = ''
-let g:mkdp_browserfunc = ''
+let g:mkdp_theme = 'light'
+let g:mkdp_page_title = '${name}'
 let g:mkdp_refresh_slow = 1
+let g:mkdp_brower = ''
+let g:mkdp_browserfunc = ''
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false,
+    \ 'disable_filename': 0,
+    \ 'toc': {}
+    \}
+nnoremap <f9> :MarkdownPreviewToggle<cr>
 
 
 " tabular
@@ -365,3 +382,4 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
