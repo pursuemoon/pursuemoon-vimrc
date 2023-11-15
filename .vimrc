@@ -59,6 +59,8 @@ set relativenumber
 set nobackup
 set nowritebackup
 
+autocmd FileType markdown setlocal wrap
+
 function! GetBufferSize()
     let w:buffer_size = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
     return w:buffer_size
