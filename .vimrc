@@ -27,8 +27,6 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-colorscheme vice
-
 let mapleader = ";"
 
 let g:platform_is_windows = has('win64') || has('win32')
@@ -41,6 +39,8 @@ else
     set mouse=c
     set helplang=en
     set langmenu=en_US.UTF-8
+    set t_Co=256
+    colorscheme gruvbox
 endif
 
 set backspace=indent,eol,start
@@ -52,7 +52,6 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-set t_Co=256
 set encoding=UTF-8
 set hlsearch
 set relativenumber
