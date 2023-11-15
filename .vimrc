@@ -145,7 +145,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 
 
 " vim-airline-themes
-let g:airline_theme = 'deus'
+let g:airline_theme = 'understated'
 
 
 " nerdtree
