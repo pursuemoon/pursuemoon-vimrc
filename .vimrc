@@ -30,11 +30,16 @@ syntax on
 let mapleader = ";"
 
 let g:platform_is_windows = has('win64') || has('win32')
+let g:editor_is_neovim = has('nvim')
 
 if g:platform_is_windows
     set mouse=a
     set helplang=ch
     set langmenu=zh_CN.UTF-8
+    if g:editor_is_neovim
+        set t_Co=256
+        colorscheme gruvbox
+    endif
 else
     set mouse=c
     set helplang=en
@@ -136,6 +141,20 @@ function! CompileAndRun()
 endfunction
 
 nnoremap <f5> :call CompileAndRun()<cr>
+
+function! SyncVimConfig()
+    let vim_config_path = $MY_VIM_CONFIG_PATH
+    let neovim_config_path = $MY_NEOVIM_CONFIG_PATH
+    if strlen(vim_config_path) == 0
+        echoerr "$MY_VIM_CONFIG_PATH is required but not set."
+    elseif strlen(neovim_config_path) == 0
+        echoerr "$MY_NEOVIM_CONFIG_PATH is required but not set."
+    else
+        execute "!cp" vim_config_path neovim_config_path
+        echo "Vim configure is synchronized."
+    endif
+endfunction
+
 
 " vim-airline
 let g:airline_powerline_fonts = 1
