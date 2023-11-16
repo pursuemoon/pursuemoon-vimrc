@@ -195,6 +195,7 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " nerdcommenter
 let g:NERDCreateDefaultMappings = 1
 let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
