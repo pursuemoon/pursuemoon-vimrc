@@ -62,6 +62,7 @@ set hlsearch
 set relativenumber
 set nobackup
 set nowritebackup
+set splitright
 
 autocmd FileType markdown setlocal wrap
 
@@ -131,7 +132,7 @@ function! CompileAndRun()
         execute "!clang % -o %<"
         execute "!time ./%<"
     elseif &filetype == 'cpp'
-        execute "!g++ % -g -o %<"
+        execute "!clang++ % -g -fsanitize=address -fno-omit-frame-pointer -fdiagnostics-color=always -o %<"
         execute "!" time_cmd " %<"
     elseif &filetype == 'sh'
         execute "!time zsh %"
