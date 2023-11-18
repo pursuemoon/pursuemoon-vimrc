@@ -1,5 +1,14 @@
 set nocompatible
 
+filetype plugin indent on
+syntax on
+
+let mapleader = ";"
+
+let g:platform_is_windows = has('win64') || has('win32')
+let g:editor_is_neovim = has('nvim')
+
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'mhinz/vim-startify'
@@ -20,17 +29,17 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'Chiel92/vim-autoformat'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+
+if g:editor_is_neovim
+    Plug 'catppuccin/nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
+endif
 
 call plug#end()
 
-filetype plugin indent on
-syntax on
-
-let mapleader = ";"
-
-let g:platform_is_windows = has('win64') || has('win32')
-let g:editor_is_neovim = has('nvim')
 
 if g:platform_is_windows
     set mouse=a
@@ -38,7 +47,7 @@ if g:platform_is_windows
     set langmenu=zh_CN.UTF-8
     if g:editor_is_neovim
         set t_Co=256
-        colorscheme gruvbox
+        colorscheme catppuccin
     endif
 else
     set mouse=c
@@ -165,7 +174,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 
 
 " vim-airline-themes
-let g:airline_theme = 'understated'
+let g:airline_theme = 'selenized'
 
 
 " nerdtree
@@ -405,3 +414,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+
+" telescope.nvim
+nnoremap F <cmd>Telescope find_files<cr>
+nnoremap B <cmd>Telescope buffers<cr>
