@@ -144,7 +144,7 @@ function! CompileAndRun()
         execute "!clang++ % -g -fsanitize=address -fno-omit-frame-pointer -fdiagnostics-color=always -o %<"
         execute "!" time_cmd " %<"
     elseif &filetype == 'sh'
-        execute "!time zsh %"
+        execute "!time ${SHELL} %"
     elseif &filetype == 'python'
         execute "!time python3 %"
     endif
