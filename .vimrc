@@ -6,6 +6,8 @@ syntax on
 let mapleader = ";"
 
 let g:platform_is_windows = has('win64') || has('win32')
+let g:platform_is_macos = system('uname') =~ 'Darwin'
+
 let g:editor_is_neovim = has('nvim')
 
 
@@ -40,7 +42,6 @@ endif
 
 call plug#end()
 
-
 if g:platform_is_windows
     set mouse=a
     set helplang=ch
@@ -50,12 +51,19 @@ if g:platform_is_windows
         colorscheme catppuccin
     endif
 else
-    set mouse=c
     set helplang=en
     set langmenu=en_US.UTF-8
     set t_Co=256
-    colorscheme gruvbox
+    if g:platform_is_macos
+        set mouse=a
+        colorscheme happy_hacking
+    else
+        set mouse=c
+        colorscheme gruvbox
+    endif
 endif
+
+highlight Search ctermbg=brown ctermfg=lightyellow
 
 set backspace=indent,eol,start
 set vb t_vb=""
